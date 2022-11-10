@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react'
+import { Landing } from './components/Landing';
+import {  Login } from './components/Login';
+import './index.css';
+import { Location } from './components/Location';
+import { Follow } from './components/Follow';
+import Intro from './components/Intro';
 
-function App() {
+export const App = () => {
+
+  const [view, setview] = useState("intro")
+  const handleView = (value) => {
+    setview(value)
+  }
+
+  console.log(handleView)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+    {(view === "intro" &&  <Intro handleView= {handleView}/> )}
+    {(view === "login" &&  <Login handleView= {handleView}/> )}
+    {(view === "landing") && <Landing handleView= {handleView} />}
+    {(view === "location") && <Location handleView= {handleView}/>}
+    {(view === "follow") && <Follow/>}
+    </>
+
+  )
 }
 
-export default App;
